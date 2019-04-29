@@ -1,5 +1,7 @@
 import React from 'react';
 import Day from '../day/Day';
+import { getLengthOfMonth } from '../calendar/utils/calendarDetailProvider';
+// import { getLengthOfMonth } from '../../utils/calendarUtils';
 
 class Week extends React.Component {
 
@@ -7,7 +9,6 @@ class Week extends React.Component {
         super(props);
         this.state = {
             firstDate: this.props.firstDate,
-            display: []
         };
     }
 
@@ -16,33 +17,42 @@ class Week extends React.Component {
         flexDirection: "row"
     };
 
-    componentDidMount = () => {
+    renderDays = () => {
         
         const daysToDisplay = []
+        const {year, month, firstDate, clickedHandler, daySelected} = this.props;
 
-        for(let i = 0; i < 7; i++){
-            let date = new Date();
-            const dayNumber = this.state.firstDate.getDate() + i;
-            date.setDate(dayNumber);
+        if(firstDate === null){
+            return;
+        }
 
+        const lengthOfMonth = getLengthOfMonth(year, month);
+        const endOfWeek = firstDate + 6;
+
+        for(let dayIter = firstDate;
+            dayIter <= endOfWeek && dayIter <= lengthOfMonth; 
+            dayIter++)
+        {
+            
             daysToDisplay.push(
                 <Day 
-                    clickedHandler={this.props.clickedHandler}
-                    key={i} 
-                    date={date}
-                    daySelected={this.props.daySelected}
+                    year={year}
+                    month={month}
+                    clickedHandler={clickedHandler}
+                    key={dayIter} 
+                    date={dayIter}
+                    daySelected={daySelected}
                 />)
         }
         
-        this.setState({display: daysToDisplay});
+        return daysToDisplay;
     }
 
     render(){
-        const {daySelected} = this.props;
-        console.log("selectedDate at Week: " + daySelected);
+    
         return (
             <div style={this.style}>
-            {this.state.display}
+            {this.renderDays()}
             </div>
         );
     }

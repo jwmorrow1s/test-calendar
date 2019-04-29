@@ -1,4 +1,5 @@
 import React from 'react';
+import { getNameOfDay } from '../calendar/utils/calendarDetailProvider';
 
 class Day extends React.Component {
 
@@ -6,42 +7,48 @@ class Day extends React.Component {
         super(props);
         this.state = {
             date: null,
+            isSelected: false,
         };
     }
 
-    style = {
-        height: "85px",
-        width: "85px",
-        border: "2px solid black",
-        backgroundColor: "white"
-    };
-
-    
-
-    handleClick = () => {
-       this.setState({selected: !this.state.selected});
-       this.props.clickedHandler(this.props.date.getDate());
-    }
-
-    renderSelected = () => {
+    getComponentStyle = () => {
         const {date, daySelected} = this.props;
-
-        console.log("daySelected prop from parent: " + daySelected);
-        console.log("date.getDate() " + date.getDate());
+        const currentlySelected = daySelected.selectedDate;
+        const isDaySelected = date === currentlySelected;
 
         return {
-                 ...this.style,
-                 backgroundColor: date.getDate() === daySelected ? "blue" : "white"
-        };  
+            height: "85px",
+            width: "85px",
+            border: "2px solid black",
+            backgroundColor: date > 0 
+                ? isDaySelected 
+                    ? "blue" 
+                    : "white" 
+                : "grey"
+        };
+    }
+
+    handleClick = () => {
+        
+        const {isSelected} = this.state;
+        const {date} = this.props;
+
+        if(date > 0){
+            this.setState({isSelected: !isSelected});
+            this.props.clickedHandler(date);
+        }
     }
 
     render(){
-        const {date, daySelected} = this.props;
-        console.log("selectedDate at Day: " + daySelected);
+
+        const {year, month, date} = this.props;
+        const dayName = getNameOfDay(year, month, date);
 
         return (
-            <div style={this.renderSelected()}
-            onClick={this.handleClick}>{date.getDate()}</div>
+            <div style={this.getComponentStyle()}
+            onClick={this.handleClick}>
+            { (date > 0 ? date : "") + " " + dayName}
+            </div>
         );
     }
   
