@@ -1,6 +1,6 @@
 import React from 'react';
 import Month from '../month/Month';
-import { getLengthOfMonth, getMonthName } from './utils/calendarDetailProvider';
+import { getLengthOfMonth } from './utils/calendarDetailProvider';
 
 
     class Calendar extends React.Component {
@@ -54,16 +54,15 @@ import { getLengthOfMonth, getMonthName } from './utils/calendarDetailProvider';
             const {selectedDate, dayIsSelected, year, month, days} = this.state;
             
             return (
-                <div>
-                    <div>{getMonthName(month) + " " + this.state.selectedDate}</div>
-                    <Month 
+                <div id="Calendar">                      
+                    <Month
                         clickedHandler={this.getClickedCallback}
                         daySelected={{selectedDate, dayIsSelected}}
                         year={year}
                         month={month}
                         days={days}
                     >    
-                    </Month>
+                    </Month>                        
                 </div>
             )
         }

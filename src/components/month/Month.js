@@ -44,7 +44,9 @@ class Month extends React.Component {
     render(){
         
         return (
-            this.displayWeeks()
+            <div id="Month">
+            {this.displayWeeks()}
+            </div>
         );
     }
   

@@ -17,8 +17,8 @@ class Day extends React.Component {
         const isDaySelected = date === currentlySelected;
 
         return {
-            height: "85px",
-            width: "85px",
+            height: "110px",
+            width: "130px",
             border: "2px solid black",
             backgroundColor: date > 0 
                 ? isDaySelected 
