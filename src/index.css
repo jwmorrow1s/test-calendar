@@ -39,4 +39,25 @@ code {
 
 #Month{
   flex-grow: 1;
+  background-color: gray;
+}
+
+#Week{
+  border: 2px solid black;
+  border-top: none;
+}
+
+#Week:first-child{
+  border-top: 2px solid black;
+}
+
+#Week:last-child{
+
+}
+
+#Day{
+  height: 110px;
+  width: 130px;
+  border-right: 2px solid black;
+  /* border: 2px solid black; */
 }

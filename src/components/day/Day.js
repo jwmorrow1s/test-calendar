@@ -17,9 +17,6 @@ class Day extends React.Component {
         const isDaySelected = date === currentlySelected;
 
         return {
-            height: "110px",
-            width: "130px",
-            border: "2px solid black",
             backgroundColor: date > 0 
                 ? isDaySelected 
                     ? "blue" 
@@ -45,9 +42,9 @@ class Day extends React.Component {
         const dayName = getNameOfDay(year, month, date);
 
         return (
-            <div style={this.getComponentStyle()}
+            <div id="Day" style={this.getComponentStyle()}
             onClick={this.handleClick}>
-            { (date > 0 ? date : "") + " " + dayName}
+            {(date > 0 ? date : "") + " " + dayName}
             </div>
         );
     }
