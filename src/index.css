@@ -37,6 +37,44 @@ code {
   min-height: 80px;
 }
 
+#MonthPicker {
+  cursor: pointer;
+  display: flex;
+  font-size: 30px;
+  padding-bottom: 40px;
+  color: black;
+  text-shadow: 1px 1px white;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 50%;
+  margin:auto;
+}
+
+#month-select-left{
+  user-select: none;
+}
+
+#month-select-right{
+  user-select: none;
+}
+
+#month-select-left:hover{
+  color: blue;
+}
+
+#month-select-right:hover{
+  color: blue;
+}
+
+#month-select-left:active{
+  color: black;
+}
+
+#month-select-right:active{
+  color: black;
+}
+
+
 #Month{
   flex-grow: 1;
   background-color: gray;
@@ -51,13 +89,16 @@ code {
   border-top: 2px solid black;
 }
 
-#Week:last-child{
-
-}
-
 #Day{
   height: 110px;
   width: 130px;
   border-right: 2px solid black;
-  /* border: 2px solid black; */
+}
+
+#Day:hover {
+  background-color: blue !important;
+}
+
+#Day:nth-child(7){
+  border-right: none;
 }
