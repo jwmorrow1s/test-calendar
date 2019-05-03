@@ -28,11 +28,11 @@ class Day extends React.Component {
     handleClick = () => {
         
         const {isSelected} = this.state;
-        const {date} = this.props;
+        const {date, selectedDayCallback} = this.props;
 
         if(date > 0){
             this.setState({isSelected: !isSelected});
-            this.props.clickedHandler(date);
+            selectedDayCallback(date);
         }
     }
 

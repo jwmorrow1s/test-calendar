@@ -27,10 +27,10 @@ class Month extends React.Component {
 
         for(let weekIter = 0; weekIter < numWeeks; weekIter++){
  
-            const {clickedHandler, daySelected} = this.props;
+            const {selectedDayCallback, daySelected} = this.props;
         
             display.push(<Week 
-                            clickedHandler={clickedHandler}
+                            selectedDayCallback={selectedDayCallback}
                             year={year}
                             month={month}
                             key={weekIter} 

@@ -1,8 +1,8 @@
 import React from 'react';
 import Month from '../month/Month';
 import { getLengthOfMonth } from './utils/calendarDetailProvider';
+import { sign } from './utils/signEnum';
 import MonthPicker from '../monthPicker/monthPicker';
-
 
     class Calendar extends React.Component {
 
@@ -38,7 +38,29 @@ import MonthPicker from '../monthPicker/monthPicker';
             })
         }
 
-        getClickedCallback = dayClicked => {
+        monthChangeCallback = direction => {
+
+            const {month} = this.state;
+
+            switch(direction){
+                case sign.POSITIVE:{
+                    this.setState({month: month + 1});
+                    return;
+                }
+                case sign.NEGATIVE: {
+                    if(month === 0){
+                        this.setState({month: 11});
+                        return;
+                    } else {
+                        this.setState({month: month - 1});
+                        return;
+                    }
+                }
+                default: return;
+            }
+        }
+
+        selectedDayCallback = dayClicked => {
 
             const {selectedDate} = this.state;
 
@@ -59,9 +81,10 @@ import MonthPicker from '../monthPicker/monthPicker';
                     <MonthPicker 
                         year={year}
                         month={month}
+                        monthChangeCallback={this.monthChangeCallback}
                     />                   
                     <Month
-                        clickedHandler={this.getClickedCallback}
+                        selectedDayCallback={this.selectedDayCallback}
                         daySelected={{selectedDate, dayIsSelected}}
                         year={year}
                         month={month}

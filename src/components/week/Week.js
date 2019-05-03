@@ -20,7 +20,7 @@ class Week extends React.Component {
     renderDays = () => {
         
         const daysToDisplay = []
-        const {year, month, firstDate, clickedHandler, daySelected} = this.props;
+        const {year, month, firstDate, selectedDayCallback, daySelected} = this.props;
 
         if(firstDate === null){
             return;
@@ -38,7 +38,7 @@ class Week extends React.Component {
                 <Day 
                     year={year}
                     month={month}
-                    clickedHandler={clickedHandler}
+                    selectedDayCallback={selectedDayCallback}
                     key={dayIter} 
                     date={dayIter}
                     daySelected={daySelected}
