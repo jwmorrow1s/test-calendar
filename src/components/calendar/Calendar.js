@@ -40,16 +40,23 @@ import MonthPicker from '../monthPicker/monthPicker';
 
         monthChangeCallback = direction => {
 
-            const {month} = this.state;
+            const {month, year} = this.state;
 
             switch(direction){
                 case sign.POSITIVE:{
-                    this.setState({month: month + 1});
+                    const isDecember = month === 11;
+                    if(isDecember){
+                        this.setState({month: month + 1, year: year + 1});
+                        return;
+                    } else {
+                        this.setState({month: month + 1});
+                    }
                     return;
                 }
                 case sign.NEGATIVE: {
-                    if(month === 0){
-                        this.setState({month: 11});
+                    const isJanuary = month === 0;
+                    if(isJanuary){
+                        this.setState({month: 11, year: year - 1});
                         return;
                     } else {
                         this.setState({month: month - 1});
